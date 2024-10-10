@@ -1,5 +1,5 @@
 from src.database import Base
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String
 
 
 class ToDo(Base):
