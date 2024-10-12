@@ -49,4 +49,5 @@ def signup(user: UserCreate) -> User:
 def get_me(token: str = Depends(oauth2_scheme)):
     with SessionLocal() as session:
         user = get_current_user(session, token)
+        # print(user.id)
         return user

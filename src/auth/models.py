@@ -9,3 +9,6 @@ class User(Base):
     username = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     hashed_password = Column(String)
+
+    # def __repr__(self):
+    #     return f"{self.id}. {self.username}"
