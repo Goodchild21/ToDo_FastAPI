@@ -1,9 +1,8 @@
 from fastapi import APIRouter, Depends
-
 from src.database import SessionLocal
 
 import src.todo.utils as utils
-from src.todo.schemas import ToDoBase, ToDo
+from src.todo.schemas import ToDoBase
 from src.auth.utils import oauth2_scheme
 
 
@@ -16,8 +15,8 @@ async def get_todos():
     return todos
 
 
-@router.post('/', response_model=ToDo)
-async def create_todo(todo: ToDoBase, token = Depends(oauth2_scheme)):
+@router.post('/', response_model=ToDoBase)
+async def create_todo(todo: ToDoBase, token = Depends(oauth2_scheme)): #token будет подсвечен как мертвый
     with SessionLocal() as session:
         session.expire_on_commit = False
         todo = utils.create_todo(session, todo)
@@ -32,7 +31,7 @@ async def update_todo(todo_id: int, todo: ToDoBase, token = Depends(oauth2_schem
     return todo
 
 
-@router.delete('/{todo_id}', response_model=ToDo)
+@router.delete('/{todo_id}', response_model=ToDoBase)
 async def delete_todo(todo_id: int, token = Depends(oauth2_scheme)):
     with SessionLocal() as session:
         session.expire_on_commit = False

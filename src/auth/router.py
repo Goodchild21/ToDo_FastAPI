@@ -45,7 +45,7 @@ def signup(user: UserCreate) -> User:
         return new_user
 
 
-@router.get("/me", response_model=UserResponse)
+@router.get("/me", response_model=UserResponse) #Для авторизованного пользователя из БД
 def get_me(token: str = Depends(oauth2_scheme)):
     with SessionLocal() as session:
         user = get_current_user(session, token)
