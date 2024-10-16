@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 
 from src.todo.models import ToDo
 import src.todo.schemas as schemas
-from src.todo.schemas import ToDoBase
 
 
 #NEW
